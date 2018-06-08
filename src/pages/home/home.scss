@@ -1,3 +1,33 @@
 page-home {
-
+    .footer-nav {
+        position: absolute;
+        bottom: 0;
+        padding: 20px 0 20px 0;
+        margin: 0;
+        text-align: center;
+        color: #fff;
+        background: #004A94;
+    }
+    .footer-nav .icon-center {
+        position: relative;
+        left: 18px;
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        font-size: 31px;
+        z-index: 2;
+    }
+    .footer-nav .button-ios {
+        margin: 0 auto !important;
+        background-color: #004A94 !important;
+    }
+    .footer-nav .pull-right {
+        float: right;
+        padding-right: 20px;
+    }
+    .footer-nav .pull-left {
+        float: left;
+        padding-left: 20px;
+    }
 }
