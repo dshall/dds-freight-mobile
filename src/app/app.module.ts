@@ -8,6 +8,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ComponentsModule } from '../components/components.module';
+import { FreightPageModule } from '../pages/freight/freight.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
+    FreightPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

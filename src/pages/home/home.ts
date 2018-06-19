@@ -1,30 +1,61 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController, Platform } from 'ionic-angular';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
+import { FreightPage } from '../freight/freight';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  scanedItem: any[] = [];
+  scannedFreightItem: any[] = [];
+  scannedItemsTotal: number = 0;
   options: BarcodeScannerOptions;
+
 
   constructor(
      public navCtrl: NavController,
-     private barcodeScanner: BarcodeScanner) {
+     private modalCtrl: ModalController,
+     private barcodeScanner: BarcodeScanner,
+     public _platform: Platform) {
 
   }
 
+  viewFreightItemsModal() {
+    let scannedItemsModal = this.modalCtrl.create(FreightPage, {
+        scannedItems: this.scannedFreightItem
+    });
+    scannedItemsModal.present();
+  }
+  // scan(){
+  //   let count = 1
+  //   count = this.scannedItemsTotal++
+  //   if(this.scannedFreightItem != null){
+  //         this.scannedFreightItem.push(count)
+  //   console.log('Scanned Items',count)
+  //   }
+
+  // }
   scanBarcode() {
     this.options = {
       prompt: "Scan Packages",
       showTorchButton: true
     }
-    this.barcodeScanner.scan(this.options).then(barcodeData => {
-      console.log('Barcode data', barcodeData);
+
+    if(this._platform.is('cordova')){
+      this.barcodeScanner.scan(this.options).then(barcodeData => {
+      if(barcodeData != null){
+      this.scannedFreightItem.push(barcodeData);
+      console.log('ArrayItems',this.scannedFreightItem)
+      this.scannedItemsTotal = this.scannedFreightItem.length;
+      console.log('Barcode data list:', this.scannedItemsTotal);
+      }
      }).catch(err => {
          console.log('Error', err);
      });
+    } else {
+      return alert('You are using windows browser')
+    }
+
   }
 }
