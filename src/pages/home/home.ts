@@ -27,15 +27,15 @@ export class HomePage {
     });
     scannedItemsModal.present();
   }
-  // scan(){
-  //   let count = 1
-  //   count = this.scannedItemsTotal++
-  //   if(this.scannedFreightItem != null){
-  //         this.scannedFreightItem.push(count)
-  //   console.log('Scanned Items',count)
-  //   }
+  scan(){
+    let count = 1
+    count = this.scannedItemsTotal++
+    if(this.scannedFreightItem != null){
+          this.scannedFreightItem.push(count)
+    console.log('Scanned Items',count)
+    }
 
-  // }
+  }
   scanBarcode() {
     this.options = {
       prompt: "Scan Packages",
