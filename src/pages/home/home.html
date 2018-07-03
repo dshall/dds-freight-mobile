@@ -1,18 +1,30 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            Ionic Blank
+            Scan Freight
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-footer class="footer-nav">
+    <ion-card *ngIf="matchFound">
+        <ion-card-header>
+          Scanned Ticket
+        </ion-card-header>
+        <ion-card-content>
+            <h3><strong>TICKET #:</strong>{{scannedFreightItem.TicketNo}}</h3>
+            <div><strong>COURIER:</strong> {{scannedFreightItem.CourierId}}</div>
+            <div><strong>STATUS:</strong> {{scannedFreightItem.Status}}</div>
+            <div><strong>PICKUP ADD:</strong> {{scannedFreightItem.Daddress}}</div>
+            <div><strong>DELIVERY ADD:</strong> {{scannedFreightItem.Daddress}}</div>
+        </ion-card-content>
+    </ion-card>
 
+    <ion-footer class="footer-nav">
         <span class="pull-left" ion-text><strong>{{scannedItemsTotal}}</strong></span>
 
         <button class="icon-center"
-        (click)="scan()"
+        (click)="scanBarcode()"
          ion-button icon-only>
               <ion-icon ios="ios-barcode-outline" md="md-barcode"></ion-icon>
         </button>

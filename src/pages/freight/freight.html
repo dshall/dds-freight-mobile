@@ -1,9 +1,3 @@
-<!--
-  Generated template for the FreightPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar no-border-bottom>
@@ -18,13 +12,13 @@
   <ion-toolbar no-border-top>
       <ion-segment [(ngModel)]="status" color="primary">
           <ion-segment-button value="all">
-              All Freight
+             <span>{{totalFreightItems}}</span> All Freight
            </ion-segment-button>
            <ion-segment-button value="scanned">
-              Scanned Freight
+             <span>{{totalScanned}}</span> Scanned
            </ion-segment-button>
            <ion-segment-button value="missed">
-              Missed Scanned
+              <span>{{totalMissedScanned}}</span>Missed
            </ion-segment-button>
       </ion-segment>
     </ion-toolbar>
@@ -34,40 +28,55 @@
 
   <div [ngSwitch]="status">
     <div *ngSwitchCase="'all'">
-        <ion-list *ngIf="scannedFreightitems" >
-        <ion-item  *ngFor="let freight of scannedFreightitems">
-           {{freight}}
+        <ion-list *ngIf="allFreightItems" >
+        <ion-item  *ngFor="let freight of allFreightItems">
+          <ion-chip>
+             <strong>{{freight.TicketNo}}</strong>
+          </ion-chip>
+          <div><strong>COURIER:</strong> {{freight.CourierId}}</div>
+          <div><strong>STATUS:</strong> {{freight.Status}}</div>
+          <div><strong>DELIVERY ADD:</strong> {{freight.Daddress}}</div>
         </ion-item>
       </ion-list>
       <ion-list>
-       <ion-item  *ngIf="!scannedFreightitems || scannedFreightitems == null">
+       <ion-item  *ngIf="allFreightItems.length === 0">
           <h3>No Freight Available</h3>
        </ion-item>
       </ion-list>
     </div>
     <div *ngSwitchCase="'scanned'">
-        <ion-list *ngIf="scannedFreightitems" >
-        <ion-item  *ngFor="let freight of scannedFreightitems">
-           {{freight}}
+        <ion-list *ngIf="scannedFreightItems" >
+        <ion-item  *ngFor="let freight of scannedFreightItems">
+          <ion-chip>
+            <strong>{{freight.TicketNo}}</strong>
+         </ion-chip>
+         <div><strong>COURIER:</strong> {{freight.CourierId}}</div>
+         <div><strong>STATUS:</strong> {{freight.Status}}</div>
+         <div><strong>DELIVERY ADD:</strong> {{freight.Daddress}}</div>
         </ion-item>
       </ion-list>
-      <ion-list>
-       <ion-item  *ngIf="!scannedFreightitems || scannedFreightitems == null">
+
+       <ion-item  *ngIf="scannedFreightItems.length === 0">
           <h3>No Freight Available</h3>
        </ion-item>
-      </ion-list>
+
     </div>
     <div *ngSwitchCase="'missed'">
-        <ion-list *ngIf="scannedFreightitems" >
-        <ion-item  *ngFor="let freight of scannedFreightitems">
-           {{freight}}
+      <ion-list *ngIf="missedScannedFreightItems" >
+        <ion-item  *ngFor="let freight of missedScannedFreightItems">
+          <ion-chip>
+            <strong>{{freight.TicketNo}}</strong>
+         </ion-chip>
+         <div><strong>COURIER:</strong> {{freight.CourierId}}</div>
+         <div><strong>STATUS:</strong> {{freight.Status}}</div>
+         <div><strong>DELIVERY ADD:</strong> {{freight.Daddress}}</div>
         </ion-item>
       </ion-list>
-      <ion-list>
-       <ion-item  *ngIf="!scannedFreightitems || scannedFreightitems == null">
+
+       <ion-item  *ngIf="missedScannedFreightItems.length === 0">
           <h3>No Freight Available</h3>
        </ion-item>
-      </ion-list>
+
     </div>
   </div>
 

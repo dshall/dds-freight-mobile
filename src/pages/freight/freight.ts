@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { FreightService } from '../../app/shared/services/freight.service';
 
 /**
  * Generated class for the FreightPage page.
@@ -14,15 +15,40 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'freight.html',
 })
 export class FreightPage {
-  scannedFreightitems: any[] = [];
+  allFreightItems: any = [];
+  scannedFreightItems: any = [];
+  listScannedItems: any = [];
+  missedScannedFreightItems: any = [];
   status: string = "scanned";
+  totalFreightItems: number = 0;
+  totalMissedScanned: number = 0;
+  totalScanned: number = 0;
+  statusScanned
 
   constructor(
      public navCtrl: NavController,
      public navParams: NavParams,
-     private viewCtrl: ViewController
+     private viewCtrl: ViewController,
+     private freightApiService: FreightService
     ) {
-      this.scannedFreightitems = this.navParams.get('scannedItems')
+
+      //list all freight
+      this.allFreightItems = this.navParams.get('allFreightList')
+
+      this.scannedFreightItems = this.navParams.get('scannedList');
+
+      this.missedScannedFreightItems = this.navParams.get('missedScanList')
+
+      //total missed scans
+      this.totalMissedScanned = this.missedScannedFreightItems.length;
+
+      //total scanned freight
+      this.totalScanned = this.scannedFreightItems.length
+
+      //total freight list
+      this.totalFreightItems = this.allFreightItems.length;
+
+
   }
 
   dismissModal() {
@@ -30,7 +56,7 @@ export class FreightPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FreightPage');
+
   }
 
 }

@@ -8,8 +8,13 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ComponentsModule } from '../components/components.module';
+
+
 import { FreightPageModule } from '../pages/freight/freight.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from './shared/components/components.module';
+import { ApiService } from './core/services/api.services';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +23,7 @@ import { FreightPageModule } from '../pages/freight/freight.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ComponentsModule,
     FreightPageModule,
     IonicModule.forRoot(MyApp)
@@ -31,6 +37,7 @@ import { FreightPageModule } from '../pages/freight/freight.module';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
+    ApiService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
